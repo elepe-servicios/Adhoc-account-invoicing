@@ -9,13 +9,12 @@ _logger = logging.getLogger(__name__)
 class ValidateAccountMove(models.TransientModel):
     _inherit = "validate.account.move"
 
-    move_ids = fields.Many2many("account.move")
     count_inv = fields.Integer(help="Technical field to know the number of invoices selected from the wizard")
     batch_size = fields.Integer(compute="_compute_batch_size")
     force_background = fields.Integer(compute="_compute_force_background")
 
     def _compute_batch_size(self):
-        self.batch_size = self.env["ir.config_parameter"].sudo().get_param("account_background_post.batch_size", 20)
+        self.batch_size = self.env["account.move"]._get_background_post_batch_size()
 
     def _compute_force_background(self):
         for rec in self:
@@ -28,7 +27,7 @@ class ValidateAccountMove(models.TransientModel):
         return res
 
     def action_background_post(self):
-        self.move_ids.background_post = True
+        self.move_ids.filtered(lambda m: m.state == "draft")._schedule_background_post()
         self.env.ref("account_background_post.ir_cron_background_post_invoices")._trigger()
 
     def validate_move(self):

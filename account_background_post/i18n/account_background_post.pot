@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:55+0000\n"
-"PO-Revision-Date: 2026-04-10 18:55+0000\n"
+"POT-Creation-Date: 2026-05-07 11:26+0000\n"
+"PO-Revision-Date: 2026-05-07 11:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_background_post.field_account_bank_statement_line__background_post
 #: model:ir.model.fields,field_description:account_background_post.field_account_move__background_post
 msgid "Background Post"
+msgstr ""
+
+#. module: account_background_post
+#: model:ir.model.fields,field_description:account_background_post.field_account_bank_statement_line__background_post_attempts
+#: model:ir.model.fields,field_description:account_background_post.field_account_move__background_post_attempts
+msgid "Background Post Attempts"
 msgstr ""
 
 #. module: account_background_post
@@ -70,13 +76,22 @@ msgid "If True then this invoice will be validated in the background by cron."
 msgstr ""
 
 #. module: account_background_post
+#: model:ir.model.fields,help:account_background_post.field_account_bank_statement_line__background_post_date
+#: model:ir.model.fields,help:account_background_post.field_account_move__background_post_date
+msgid ""
+"If set, the background cron waits until this date to post this invoice. If "
+"empty, the invoice is posted on the next cron run."
+msgstr ""
+
+#. module: account_background_post
 #: model:ir.model,name:account_background_post.model_account_move
 msgid "Journal Entry"
 msgstr ""
 
 #. module: account_background_post
-#: model:ir.model.fields,field_description:account_background_post.field_validate_account_move__move_ids
-msgid "Move"
+#: model:ir.model.fields,help:account_background_post.field_account_bank_statement_line__background_post_attempts
+#: model:ir.model.fields,help:account_background_post.field_account_move__background_post_attempts
+msgid "Number of failed attempts to post this invoice in the background."
 msgstr ""
 
 #. module: account_background_post
@@ -87,6 +102,17 @@ msgstr ""
 #. module: account_background_post
 #: model_terms:ir.ui.view,arch_db:account_background_post.validate_account_move_view
 msgid "Post in Background"
+msgstr ""
+
+#. module: account_background_post
+#: model:ir.model.fields,field_description:account_background_post.field_account_bank_statement_line__background_post_date
+#: model:ir.model.fields,field_description:account_background_post.field_account_move__background_post_date
+msgid "Post in Background At"
+msgstr ""
+
+#. module: account_background_post
+#: model_terms:ir.ui.view,arch_db:account_background_post.view_move_form
+msgid "Scheduled for"
 msgstr ""
 
 #. module: account_background_post
